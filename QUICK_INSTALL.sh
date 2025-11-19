@@ -236,7 +236,7 @@ ENDSUPERVISOR
 echo "[8/10] Configurando Nginx..."
 cat > /etc/nginx/sites-available/zpro-webhook << 'ENDNGINX'
 server {
-    listen 80;
+    listen 8081;
     server_name 217.196.63.63;
 
     location / {
@@ -265,10 +265,10 @@ nginx -t && systemctl reload nginx
 echo ""
 echo "✅ INSTALAÇÃO CONCLUÍDA!"
 echo ""
-echo "Servidor rodando em: http://217.196.63.63"
+echo "Servidor rodando em: http://217.196.63.63:8081"
 echo ""
 echo "Testar:"
-echo "  curl http://217.196.63.63/health"
+echo "  curl http://217.196.63.63:8081/health"
 echo ""
 
 ROOTSCRIPT
@@ -276,12 +276,12 @@ ROOTSCRIPT
 # Teste final
 echo "🧪 Testando instalação..."
 sleep 2
-curl -s http://217.196.63.63/health | jq .
+curl -s http://217.196.63.63:8081/health | jq .
 
 echo ""
 echo "✅ TUDO PRONTO!"
 echo ""
 echo "Configure webhooks no Z-PRO:"
-echo "  Messages: http://217.196.63.63/zpro/webhook/messages"
-echo "  Status: http://217.196.63.63/zpro/webhook/status"
+echo "  Messages: http://217.196.63.63:8081/zpro/webhook/messages"
+echo "  Status: http://217.196.63.63:8081/zpro/webhook/status"
 echo ""
